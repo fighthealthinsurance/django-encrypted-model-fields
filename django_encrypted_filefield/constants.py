@@ -17,8 +17,8 @@ def get_bytes(v):
         return v
 
     raise TypeError(
-        "SALT & PASSWORD must be specified as strings that convert nicely to "
-        "bytes."
+        f"SALT, PASSWORD must be specified as strings that convert nicely to "
+        f"bytes. got {v}"
     )
 
 

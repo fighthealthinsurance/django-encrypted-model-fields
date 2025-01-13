@@ -1,4 +1,4 @@
-from django.core.checks import Error, register
+from django.core.checks import Warning, Error, register
 from django.urls import NoReverseMatch, reverse
 
 from .constants import FETCH_URL_NAME, PASSWORD, SALT
@@ -15,9 +15,9 @@ def constants_check(app_configs, **kwargs):
     )
 
     if not SALT:
-        check_messages.append(Error(message.format("DEFF_SALT")))
+        check_messages.append(Warning(message.format("DEFF_SALT")))
     if not PASSWORD:
-        check_messages.append(Error(message.format("DEFF_PASSWORD")))
+        check_messages.append(Warning(message.format("DEFF_PASSWORD")))
 
     return check_messages
 

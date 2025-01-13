@@ -1,5 +1,8 @@
 [tool.poetry]
-name = "django-encrypted-filefield"
+name = "tlc-django-encrypted-filefield"
+packages = [
+    { include = "django_encrypted_filefield"}
+]
 version = "0.3.0"
 homepage = "https://github.com/danielquinn/django-encrypted-filefield"
 repository = "https://github.com/danielquinn/django-encrypted-filefield"
