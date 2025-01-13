@@ -4,8 +4,8 @@ import cryptography.fernet
 
 
 class Command(BaseCommand):
-    help = 'Generates a new Fernet encryption key'
+    help = "Generates a new Fernet encryption key"
 
     def handle(self, *args, **options):
         key = cryptography.fernet.Fernet.generate_key()
-        self.stdout.write(key.decode('utf-8'), ending='\n')
+        self.stdout.write(key.decode("utf-8"), ending="\n")

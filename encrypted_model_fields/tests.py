@@ -16,18 +16,28 @@ class TestSettings(TestCase):
             fields.get_crypter()
 
     def test_settings_tuple(self):
-        with self.settings(FIELD_ENCRYPTION_KEY=(self.key1, self.key2,)):
+        with self.settings(
+            FIELD_ENCRYPTION_KEY=(
+                self.key1,
+                self.key2,
+            )
+        ):
             fields.get_crypter()
 
     def test_settings_list(self):
-        with self.settings(FIELD_ENCRYPTION_KEY=[self.key1, self.key2, ]):
+        with self.settings(
+            FIELD_ENCRYPTION_KEY=[
+                self.key1,
+                self.key2,
+            ]
+        ):
             fields.get_crypter()
 
     def test_settings_empty(self):
         with self.settings(FIELD_ENCRYPTION_KEY=None):
             self.assertRaises(ImproperlyConfigured, fields.get_crypter)
 
-        with self.settings(FIELD_ENCRYPTION_KEY=''):
+        with self.settings(FIELD_ENCRYPTION_KEY=""):
             self.assertRaises(ImproperlyConfigured, fields.get_crypter)
 
         with self.settings(FIELD_ENCRYPTION_KEY=[]):
@@ -40,8 +50,18 @@ class TestSettings(TestCase):
         with self.settings(FIELD_ENCRYPTION_KEY=self.key1[:5]):
             self.assertRaises(ImproperlyConfigured, fields.get_crypter)
 
-        with self.settings(FIELD_ENCRYPTION_KEY=(self.key1[:5], self.key2,)):
+        with self.settings(
+            FIELD_ENCRYPTION_KEY=(
+                self.key1[:5],
+                self.key2,
+            )
+        ):
             self.assertRaises(ImproperlyConfigured, fields.get_crypter)
 
-        with self.settings(FIELD_ENCRYPTION_KEY=[self.key1[:5], self.key2[:5], ]):
+        with self.settings(
+            FIELD_ENCRYPTION_KEY=[
+                self.key1[:5],
+                self.key2[:5],
+            ]
+        ):
             self.assertRaises(ImproperlyConfigured, fields.get_crypter)
