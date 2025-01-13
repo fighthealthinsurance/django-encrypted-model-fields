@@ -1,5 +1,6 @@
 import datetime
 import mock
+import zoneinfo
 
 from django.forms import ModelForm
 from django.test import TestCase
@@ -15,7 +16,7 @@ class TestModelTestCase(TestCase):
     def test_value(self):
         test_date_today = datetime.date.today()
         test_date = datetime.date(2011, 1, 1)
-        test_datetime = datetime.datetime(2011, 1, 1, 1, tzinfo=timezone.utc)
+        test_datetime = datetime.datetime(2011, 1, 1, 1, tzinfo=zoneinfo.ZoneInfo(key='UTC'))
         inst = models.TestModel()
         inst.enc_char_field = 'This is a test string!'
         inst.enc_text_field = 'This is a test string2!'
@@ -44,7 +45,7 @@ class TestModelTestCase(TestCase):
         self.assertEqual(inst.enc_big_integer_field, 9223372036854775807)
 
         test_date = datetime.date(2012, 2, 1)
-        test_datetime = datetime.datetime(2012, 1, 1, 2, tzinfo=timezone.utc)
+        test_datetime = datetime.datetime(2012, 1, 1, 2, tzinfo=zoneinfo.ZoneInfo(key='UTC'))
         inst.enc_char_field = 'This is another test string!'
         inst.enc_text_field = 'This is another test string2!'
         inst.enc_date_field = test_date
@@ -65,7 +66,7 @@ class TestModelTestCase(TestCase):
         self.assertEqual(inst.enc_date_now_add_field, datetime.date.today())
         # be careful about sqlite testing, which doesn't support native dates
         if timezone.is_naive(inst.enc_datetime_field):
-            inst.enc_datetime_field = timezone.make_aware(inst.enc_datetime_field, timezone.utc)
+            inst.enc_datetime_field = timezone.make_aware(inst.enc_datetime_field, zoneinfo.ZoneInfo(key='UTC'))
         self.assertEqual(inst.enc_datetime_field, test_datetime)
         self.assertEqual(inst.enc_boolean_field, False)
         self.assertEqual(inst.enc_integer_field, -123456789)
@@ -95,7 +96,7 @@ class TestModelTestCase(TestCase):
         inst.enc_char_field = 'This is a test string!'
         inst.enc_text_field = 'This is a test string2!'
         inst.enc_date_field = datetime.date(2011, 1, 1)
-        inst.enc_datetime_field = datetime.datetime(2012, 2, 1, 1, tzinfo=timezone.utc)
+        inst.enc_datetime_field = datetime.datetime(2012, 2, 1, 1, tzinfo=zoneinfo.ZoneInfo(key='UTC'))
         inst.enc_boolean_field = True
         inst.enc_integer_field = 123456789
         inst.enc_positive_integer_field = 123456789
@@ -172,7 +173,7 @@ class TestModelTestCase(TestCase):
 
             test_date_today = datetime.date.today()
             test_date = datetime.date(2011, 1, 1)
-            test_datetime = datetime.datetime(2011, 1, 1, 1, tzinfo=timezone.utc)
+            test_datetime = datetime.datetime(2011, 1, 1, 1, tzinfo=zoneinfo.ZoneInfo(key='UTC'))
             inst = models.TestModel()
             inst.enc_char_field = 'This is a test string!'
             inst.enc_text_field = 'This is a test string2!'
@@ -200,7 +201,7 @@ class TestModelTestCase(TestCase):
             self.assertEqual(inst.enc_date_now_add_field, test_date_today)
             # be careful about sqlite testing, which doesn't support native dates
             if timezone.is_naive(inst.enc_datetime_field):
-                inst.enc_datetime_field = timezone.make_aware(inst.enc_datetime_field, timezone.utc)
+                inst.enc_datetime_field = timezone.make_aware(inst.enc_datetime_field, zoneinfo.ZoneInfo(key='UTC'))
             self.assertEqual(inst.enc_datetime_field, test_datetime)
             self.assertEqual(inst.enc_boolean_field, True)
             self.assertEqual(inst.enc_integer_field, 123456789)
@@ -227,7 +228,7 @@ class TestModelTestCase(TestCase):
             self.assertEqual(inst.enc_date_now_add_field, test_date_today)
             # be careful about sqlite testing, which doesn't support native dates
             if timezone.is_naive(inst.enc_datetime_field):
-                inst.enc_datetime_field = timezone.make_aware(inst.enc_datetime_field, timezone.utc)
+                inst.enc_datetime_field = timezone.make_aware(inst.enc_datetime_field, zoneinfo.ZoneInfo(key='UTC'))
             self.assertEqual(inst.enc_datetime_field, test_datetime)
             self.assertEqual(inst.enc_boolean_field, True)
             self.assertEqual(inst.enc_integer_field, 123456789)
