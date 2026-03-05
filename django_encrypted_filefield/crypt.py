@@ -1,7 +1,6 @@
 import base64
 
 from cryptography.fernet import Fernet
-from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
 
@@ -17,7 +16,6 @@ class Cryptographer:
                 length=32,
                 salt=SALT,
                 iterations=100000,
-                backend=default_backend(),
             ).derive(PASSWORD)
         )
     )
