@@ -4,7 +4,7 @@ Changelog
 0.4.0
 =====
 
-* Added support for Django 4.2, 5.0, 5.1, and 5.2
+* Added support for Django 5.0, 5.1, and 5.2
 * Added support for Python 3.10, 3.11, 3.12, and 3.13
 * Switched build system from Poetry to setuptools
 * Removed deprecated ``backend=default_backend()`` from cryptography usage

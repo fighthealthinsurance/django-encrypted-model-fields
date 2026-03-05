@@ -3,7 +3,7 @@
 [![Tests](https://github.com/fighthealthinsurance/django-encrypted-model-fields/actions/workflows/python-app.yml/badge.svg)](https://github.com/fighthealthinsurance/django-encrypted-model-fields/actions/workflows/python-app.yml)
 [![PyPI](https://img.shields.io/pypi/v/tlc-django-encrypted-filefield.svg)](https://pypi.org/project/tlc-django-encrypted-filefield/)
 [![Python](https://img.shields.io/pypi/pyversions/tlc-django-encrypted-filefield.svg)](https://pypi.org/project/tlc-django-encrypted-filefield/)
-[![Django](https://img.shields.io/badge/django-4.2%20%7C%205.0%20%7C%205.1%20%7C%205.2-blue.svg)](https://pypi.org/project/tlc-django-encrypted-filefield/)
+[![Django](https://img.shields.io/badge/django-5.0%20%7C%205.1%20%7C%205.2-blue.svg)](https://pypi.org/project/tlc-django-encrypted-filefield/)
 
 Encrypt uploaded files, store them wherever you like and stream them back
 unencrypted.
@@ -11,7 +11,7 @@ unencrypted.
 > **Note:** This is an actively maintained fork of
 > [danielquinn/django-encrypted-filefield](https://github.com/danielquinn/django-encrypted-filefield),
 > which has been unmaintained since 2017. This fork adds support for modern
-> Django (4.2+) and Python (3.10+) versions.
+> Django (5.0+) and Python (3.10+) versions.
 
 ## Installation
 

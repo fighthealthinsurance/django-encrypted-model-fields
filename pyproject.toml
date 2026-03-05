@@ -28,7 +28,6 @@ keywords = [
 classifiers = [
     "Development Status :: 4 - Beta",
     "Framework :: Django",
-    "Framework :: Django :: 4.2",
     "Framework :: Django :: 5.0",
     "Framework :: Django :: 5.1",
     "Framework :: Django :: 5.2",
@@ -44,7 +43,7 @@ classifiers = [
     "Topic :: Security :: Cryptography",
 ]
 dependencies = [
-    "django>=4.2",
+    "django>=5.0",
     "cryptography>=38.0",
     "requests>=2.20.0",
     "python-magic>=0.4.12",
@@ -63,7 +62,7 @@ dev = [
 Homepage = "https://github.com/fighthealthinsurance/django-encrypted-model-fields"
 Repository = "https://github.com/fighthealthinsurance/django-encrypted-model-fields"
 Issues = "https://github.com/fighthealthinsurance/django-encrypted-model-fields/issues"
-Changelog = "https://github.com/fighthealthinsurance/django-encrypted-model-fields/blob/main/CHANGES.rst"
+Changelog = "https://github.com/fighthealthinsurance/django-encrypted-model-fields/blob/django5x/CHANGES.rst"
 
 [tool.setuptools.packages.find]
 include = ["django_encrypted_filefield*"]
