@@ -1,12 +1,9 @@
-from django.test import TestCase
+from django.test import SimpleTestCase
 
 from ..crypt import Cryptographer
 
 
-class CryptographerTestCase(TestCase):
-    """
-    I'm not sure how to test this any better.
-    """
+class CryptographerTestCase(SimpleTestCase):
 
     def test_encryption(self):
         data = b"This is some data"

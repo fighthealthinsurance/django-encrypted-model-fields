@@ -48,9 +48,7 @@ class FetchUrlCheckTestCase(SimpleTestCase):
         self.assertEqual(len(result), 1)
         self.assertIsInstance(result[0], Error)
 
-    @mock.patch(
-        "django_encrypted_filefield.checks.FETCH_URL_NAME", None
-    )
+    @mock.patch("django_encrypted_filefield.checks.FETCH_URL_NAME", None)
     def test_no_error_when_fetch_url_name_not_set(self):
         result = fetch_url_check(None)
         self.assertEqual(result, [])

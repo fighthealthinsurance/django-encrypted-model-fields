@@ -100,8 +100,20 @@ sections = [
     "LOCALFOLDER",
 ]
 
+[tool.pylint.messages_control]
+disable = [
+    "missing-module-docstring",
+    "missing-class-docstring",
+    "missing-function-docstring",
+    "too-few-public-methods",
+]
+
+[tool.pyright]
+pythonVersion = "3.10"
+typeCheckingMode = "basic"
+
 [tool.black]
 line-length = 79
-target-version = ["py310", "py311", "py312", "py313"]
+target-version = ["py310"]
 include = '\.pyi?$'
 exclude = '/(\.eggs|\.git|_build|build|dist)/'
