@@ -45,7 +45,7 @@ class FetchView(View):
 
         if self._is_url(path):
 
-            content = requests.get(path, stream=True).raw.read()
+            content = requests.get(path, stream=True, timeout=30).raw.read()
 
         else:
 

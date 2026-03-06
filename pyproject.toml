@@ -53,6 +53,7 @@ dependencies = [
 [project.optional-dependencies]
 dev = [
     "black",
+    "coverage",
     "isort",
     "pylint",
     "tox",
@@ -69,7 +70,8 @@ include = ["django_encrypted_filefield*"]
 
 [tool.coverage.run]
 branch = true
-omit = ["tests.py"]
+source = ["django_encrypted_filefield"]
+omit = ["*/tests/*"]
 
 [tool.coverage.report]
 ignore_errors = true
