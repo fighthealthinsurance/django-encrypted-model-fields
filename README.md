@@ -146,7 +146,7 @@ directory:
 
 ```bash
 git clone git@github.com:fighthealthinsurance/django-encrypted-model-fields.git
-cd django-encrypted-model-fields/demo
+cd django-encrypted-model-fields
 export DEFF_SALT="salt"
 export DEFF_PASSWORD="password"
 export DEFF_FETCH_URL_NAME="fetch"

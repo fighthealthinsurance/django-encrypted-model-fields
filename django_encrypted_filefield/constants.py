@@ -16,6 +16,9 @@ def get_bytes(v):
     if isinstance(v, bytes):
         return v
 
+    if v is None:
+        return b""
+
     raise TypeError(
         f"SALT, PASSWORD must be specified as strings that convert nicely to "
         f"bytes. got {v}"

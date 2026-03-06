@@ -19,7 +19,7 @@ class FetchView(View):
     Django:
 
       from django.contrib.auth.mixins import LoginRequiredMixin
-      from django_encrypted_fields.views import FetchView as BaseFetchView
+      from django_encrypted_filefield.views import FetchView as BaseFetchView
 
       class FetchView(LoginRequiredMixin, BaseFetchView):
           pass
