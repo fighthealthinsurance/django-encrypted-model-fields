@@ -51,12 +51,13 @@ class FetchView(View):
         else:
 
             # Normalise the path to strip out naughty attempts
+            media_root = str(settings.MEDIA_ROOT)
             path = os.path.normpath(path).replace(
-                settings.MEDIA_URL, settings.MEDIA_ROOT, 1
+                settings.MEDIA_URL, media_root, 1
             )
 
             # Evil path request!
-            if not path.startswith(settings.MEDIA_ROOT):
+            if not path.startswith(media_root):
                 raise Http404
 
             # The file requested doesn't exist locally.  A legit 404

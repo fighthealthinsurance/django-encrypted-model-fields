@@ -34,7 +34,7 @@ def fetch_url_check(app_configs, **kwargs):  # pylint: disable=unused-argument
         return [
             Error(
                 "django-encrypted-filefield requires that you define a url for "
-                "the fetching the files."
+                "fetching the files."
             )
         ]
 
