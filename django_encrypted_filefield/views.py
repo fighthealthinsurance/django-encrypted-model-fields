@@ -1,7 +1,8 @@
 import os
 
 from django.conf import settings
-from django.core.validators import URLValidator, ValidationError
+from django.core.exceptions import ValidationError
+from django.core.validators import URLValidator
 from django.http import Http404, HttpResponse
 from django.views.generic import View
 
@@ -19,7 +20,7 @@ class FetchView(View):
     Django:
 
       from django.contrib.auth.mixins import LoginRequiredMixin
-      from django_encrypted_fields.views import FetchView as BaseFetchView
+      from django_encrypted_filefield.views import FetchView as BaseFetchView
 
       class FetchView(LoginRequiredMixin, BaseFetchView):
           pass
@@ -35,7 +36,7 @@ class FetchView(View):
 
     """
 
-    def get(self, request, *args, **kwargs):
+    def get(self, request, *args, **kwargs):  # pylint: disable=unused-argument
 
         path = kwargs.get("path")
 
@@ -45,17 +46,18 @@ class FetchView(View):
 
         if self._is_url(path):
 
-            content = requests.get(path, stream=True).raw.read()
+            content = requests.get(path, stream=True, timeout=30).raw.read()
 
         else:
 
             # Normalise the path to strip out naughty attempts
+            media_root = str(settings.MEDIA_ROOT)
             path = os.path.normpath(path).replace(
-                settings.MEDIA_URL, settings.MEDIA_ROOT, 1
+                settings.MEDIA_URL, media_root, 1
             )
 
             # Evil path request!
-            if not path.startswith(settings.MEDIA_ROOT):
+            if not path.startswith(media_root):
                 raise Http404
 
             # The file requested doesn't exist locally.  A legit 404

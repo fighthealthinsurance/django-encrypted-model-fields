@@ -1,24 +1,22 @@
-from django.test import TestCase, override_settings
+from django.test import SimpleTestCase, override_settings
 
 from django_encrypted_filefield.constants import _get_setting, get_bytes
 
 
-class ConstantsTestCase(TestCase):
+class ConstantsTestCase(SimpleTestCase):
     def test_get_bytes_with_string(self):
         for s in ("a", "α", ""):
-            self.assertEqual(get_bytes(s), bytes(s.encode("utf-8")))
+            self.assertEqual(get_bytes(s), s.encode("utf-8"))
 
-    def test_get_bytes_with_nothing(self):
-        for s in (None, 0, False, 1, True, lambda _: 1):
+    def test_get_bytes_with_none(self):
+        self.assertEqual(get_bytes(None), b"")
+
+    def test_get_bytes_with_invalid_type(self):
+        for s in (0, False, 1, True, lambda _: 1):
             self.assertRaises(TypeError, get_bytes, s)
 
     def test_get_bytes_with_bytes(self):
-        inputs = (
-            bytes("a".encode("utf-8")),
-            bytes("α".encode("utf-8")),
-            bytes("".encode("utf-8")),
-        )
-        for s in inputs:
+        for s in (b"a", "α".encode("utf-8"), b""):
             self.assertEqual(get_bytes(s), s)
 
     @override_settings(DEFF_SALT="salt")

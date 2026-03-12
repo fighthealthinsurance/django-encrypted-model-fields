@@ -1,53 +1,84 @@
-[tool.poetry]
-name = "tlc-django-encrypted-filefield"
-packages = [
-    { include = "django_encrypted_filefield"}
-]
-version = "0.3.0"
-homepage = "https://github.com/danielquinn/django-encrypted-filefield"
-repository = "https://github.com/danielquinn/django-encrypted-filefield"
-description = "Encrypt uploaded files, store them wherever you like and stream them back unencrypted"
-authors = ["Daniel Quinn <code@danielquinn.org>"]
-license = "GPL-3.0-or-later"
-classifiers = [
-  "Operating System :: POSIX",
-  "Operating System :: Unix",
-  "Programming Language :: Python :: 3.10",
-  "Programming Language :: Python :: 3.11",
-  "Topic :: Internet :: WWW/HTTP",
-]
-
-
-[tool.poetry.dependencies]
-python = ">3.10"
-cryptography = ">=44.0.0"
-requests = ">=2.12.4"
-python-magic = ">=0.4.12,<0.5.0"
-django = ">=5.0"
-Pillow = ">=11.0.0"
-
-[tool.poetry.dev-dependencies]
-black = "^24.10.0"
-isort = "^4.3.21"
-
-
 [build-system]
-requires = ["poetry>=0.12"]
-build-backend = "poetry.masonry.api"
+requires = ["setuptools>=68.0"]
+build-backend = "setuptools.build_meta"
 
+[project]
+name = "tlc-django-encrypted-filefield"
+version = "0.4.0"
+description = "Encrypt uploaded files, store them wherever you like and stream them back unencrypted"
+readme = "README.md"
+license = "GPL-3.0-or-later"
+requires-python = ">=3.10"
+authors = [
+    { name = "Daniel Quinn", email = "code@danielquinn.org" },
+]
+maintainers = [
+    { name = "Fight Health Insurance" },
+]
+keywords = [
+    "django",
+    "encryption",
+    "filefield",
+    "encrypted-files",
+    "s3",
+    "security",
+    "fernet",
+    "upload",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Framework :: Django",
+    "Framework :: Django :: 5.0",
+    "Framework :: Django :: 5.1",
+    "Framework :: Django :: 5.2",
+    "Intended Audience :: Developers",
+    "Operating System :: POSIX",
+    "Operating System :: Unix",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Internet :: WWW/HTTP",
+    "Topic :: Security :: Cryptography",
+]
+dependencies = [
+    "django>=5.0",
+    "cryptography>=38.0",
+    "requests>=2.20.0",
+    "python-magic>=0.4.12",
+    "Pillow>=9.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "black",
+    "coverage",
+    "isort",
+    "pylint",
+    "tox",
+]
+
+[project.urls]
+Homepage = "https://github.com/fighthealthinsurance/django-encrypted-model-fields"
+Repository = "https://github.com/fighthealthinsurance/django-encrypted-model-fields"
+Issues = "https://github.com/fighthealthinsurance/django-encrypted-model-fields/issues"
+Changelog = "https://github.com/fighthealthinsurance/django-encrypted-model-fields/blob/django5x/CHANGES.rst"
+
+[tool.setuptools.packages.find]
+include = ["django_encrypted_filefield*"]
 
 [tool.coverage.run]
 branch = true
-omit = ["tests.py"]
-
+source = ["django_encrypted_filefield"]
+omit = ["*/tests/*"]
 
 [tool.coverage.report]
 ignore_errors = true
 exclude_lines = [
-  "pragma: no cover",
-  "raise NotImplementedError"
+    "pragma: no cover",
+    "raise NotImplementedError",
 ]
-
 
 [tool.isort]
 atomic = true
@@ -60,18 +91,29 @@ default_section = "THIRDPARTY"
 known_django = "django"
 line_length = 79
 include_trailing_comma = true
-sections=[
-  "FUTURE",
-  "STDLIB",
-  "DJANGO",
-  "THIRDPARTY",
-  "FIRSTPARTY",
-  "LOCALFOLDER"
+sections = [
+    "FUTURE",
+    "STDLIB",
+    "DJANGO",
+    "THIRDPARTY",
+    "FIRSTPARTY",
+    "LOCALFOLDER",
 ]
 
+[tool.pylint.messages_control]
+disable = [
+    "missing-module-docstring",
+    "missing-class-docstring",
+    "missing-function-docstring",
+    "too-few-public-methods",
+]
+
+[tool.pyright]
+pythonVersion = "3.10"
+typeCheckingMode = "basic"
 
 [tool.black]
 line-length = 79
-target-version = ['py311']
+target-version = ["py310"]
 include = '\.pyi?$'
 exclude = '/(\.eggs|\.git|_build|build|dist)/'

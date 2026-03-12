@@ -32,6 +32,7 @@ class ViewsTestCase(TestCase):
         )
 
     @override_settings(DEFF_FETCH_URL_NAME="fetch")
+    @override_settings(MEDIA_ROOT="/tmp", MEDIA_URL="/media/")
     @mock.patch("django_encrypted_filefield.views.os.path.exists")
     @mock.patch(
         "django_encrypted_filefield.views.open",
@@ -40,7 +41,7 @@ class ViewsTestCase(TestCase):
     )
     def test_local_path_exists(self, exists):
         exists.return_value = True
-        kwargs = {"path": "dummy-file"}
+        kwargs = {"path": "/media/dummy-file"}
         response = self.client.get(reverse("fetch", kwargs=kwargs))
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.content, self.GIF)

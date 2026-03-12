@@ -4,17 +4,20 @@ from django.conf import settings
 
 
 def _get_setting(name):
-    setting_name = "DEFF_{}".format(name)
+    setting_name = f"DEFF_{name}"
     return os.getenv(setting_name, getattr(settings, setting_name, None))
 
 
 def get_bytes(v):
 
     if isinstance(v, str):
-        return bytes(v.encode("utf-8"))
+        return v.encode("utf-8")
 
     if isinstance(v, bytes):
         return v
+
+    if v is None:
+        return b""
 
     raise TypeError(
         f"SALT, PASSWORD must be specified as strings that convert nicely to "

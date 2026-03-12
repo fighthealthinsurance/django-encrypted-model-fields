@@ -20,12 +20,17 @@ class EncryptedFile(BytesIO):
 
 class EncryptionMixin:
     def save(self, name, content, save=True):
-        return super().save(name, EncryptedFile(content), save=save)
+        return super().save(  # type: ignore[misc]
+            name, EncryptedFile(content), save=save
+        )
 
     save.alters_data = True
 
     def _get_url(self):
-        return reverse(FETCH_URL_NAME, kwargs={"path": super().url})
+        return reverse(
+            FETCH_URL_NAME,
+            kwargs={"path": super().url},  # type: ignore[misc]
+        )
 
     url = property(_get_url)
 
@@ -46,7 +51,9 @@ class EncryptedImageField(ImageField):
 
     attr_class = EncryptedImageFieldFile
 
-    def update_dimension_fields(self, instance, force=False, *args, **kwargs):
+    def update_dimension_fields(  # pylint: disable=keyword-arg-before-vararg
+        self, instance, force=False, *args, **kwargs
+    ):
         """
         Since we're encrypting the file, any attempts to force recalculation of
         the dimensions will always fail, resulting in a null value for height
